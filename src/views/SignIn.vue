@@ -40,7 +40,7 @@ const password = ref()
 const signInAndRedirect = async () => {
   await signin()
   if (!authStore.error) {
-    router.push('/cars')
+    router.push('/phones')
   }
 }
 
