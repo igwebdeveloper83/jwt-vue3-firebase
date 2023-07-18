@@ -13,12 +13,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useAuthStore } from '../stores/auth'
+
 import Card from 'primevue/card'
 import Loader from '../components/Loader.vue'
 import axios from 'axios'
-
-const authStore = useAuthStore()
 
 const phones = ref()
 const showLoader = ref(false)
@@ -27,7 +25,7 @@ const getPhones = async () => {
   showLoader.value = true
   try {
     const response = await axios.get(
-      `https://jwt-vue3-firebase-82c4e-default-rtdb.europe-west1.firebasedatabase.app/phone.json?auth=${authStore.userInfo.token}`
+      `https://jwt-vue3-firebase-82c4e-default-rtdb.europe-west1.firebasedatabase.app/phone.json`
     )
     phones.value = response.data
   } catch (err) {

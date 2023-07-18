@@ -9,6 +9,7 @@ import PrimeVue from 'primevue/config'
 
 import App from './App.vue'
 import router from './router'
+import './api'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBusPXFD_vBcZDsdV9FdLVAuHRZwxbxnUg',
