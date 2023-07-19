@@ -35,6 +35,14 @@ export const useAuthStore = defineStore('auth', () => {
         refreshToken: response.data.refreshToken,
         expiresIn: response.data.expiresIn
       }
+      localStorage.setItem(
+        'userToken',
+        JSON.stringify({
+          token: userInfo.value.token,
+          refreshToken: userInfo.value.refreshToken,
+          expiresIn: userInfo.value.expiresIn
+        })
+      )
     } catch (err) {
       switch (err.response.data.error.message) {
         case 'EMAIL_EXISTS':
