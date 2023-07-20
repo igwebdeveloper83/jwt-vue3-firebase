@@ -13,10 +13,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
 import Card from 'primevue/card'
 import Loader from '../components/Loader.vue'
-import axios from 'axios'
+import axiosApiInstance from '../api'
 
 const phones = ref()
 const showLoader = ref(false)
@@ -24,7 +23,7 @@ const showLoader = ref(false)
 const getPhones = async () => {
   showLoader.value = true
   try {
-    const response = await axios.get(
+    const response = await axiosApiInstance.get(
       `https://jwt-vue3-firebase-82c4e-default-rtdb.europe-west1.firebasedatabase.app/phone.json`
     )
     phones.value = response.data

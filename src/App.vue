@@ -12,7 +12,6 @@ const checkUser = () => {
   if (token) {
     authStore.userInfo.token = token.token
     authStore.userInfo.refreshToken = token.refreshToken
-    authStore.userInfo.expiresIn = token.expiresIn
   }
   console.log(authStore.userInfo)
 }
