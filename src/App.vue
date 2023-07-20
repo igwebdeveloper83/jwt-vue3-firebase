@@ -2,10 +2,18 @@
 import { computed } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { useAuthStore } from './stores/auth'
+import Button from 'primevue/button'
+import router from './router'
 
 const authStore = useAuthStore()
 
 const token = computed(() => authStore.userInfo.token)
+
+const logOut = () => {
+  authStore.logout()
+  localStorage.removeItem('userToken')
+  router.push('/signin')
+}
 
 const checkUser = () => {
   const token = JSON.parse(localStorage.getItem('userToken'))
@@ -24,6 +32,13 @@ checkUser()
     <RouterLink class="menu_link" v-if="!token" to="/signin">Signin</RouterLink>
     <RouterLink class="menu_link" v-if="!token" to="/signup">Signup</RouterLink>
     <RouterLink class="menu_link" v-if="token" to="/phones">Phones</RouterLink>
+    <Button
+      label="Logout"
+      v-if="token"
+      icon="pi pi-user"
+      class="w-7rem"
+      @click.prevent="logOut"
+    ></Button>
   </div>
   <div class="container">
     <RouterView />
