@@ -4,10 +4,10 @@ import axiosApiInstance from '../api'
 
 const apiKey = import.meta.env.VITE_API_KEY_FIREBASE
 
-const error = ref('')
-const loader = ref(false)
-
 export const useAuthStore = defineStore('auth', () => {
+  const error = ref('')
+  const loader = ref(false)
+
   const userInfo = ref({
     token: '',
     email: '',
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth', () => {
           returnSecureToken: true
         }
       )
-      console.log(response.data)
+      console.log('response:', response.data)
       userInfo.value = {
         token: response.data.idToken,
         email: response.data.email,
@@ -76,6 +76,5 @@ export const useAuthStore = defineStore('auth', () => {
       refreshToken: ''
     }
   }
-
   return { auth, userInfo, loader, error, logout }
 })

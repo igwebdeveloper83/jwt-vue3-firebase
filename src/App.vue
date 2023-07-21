@@ -9,15 +9,18 @@ const authStore = useAuthStore()
 
 const token = computed(() => authStore.userInfo.token)
 
+// Function to handle user logout
 const logOut = () => {
   authStore.logout()
   localStorage.removeItem('userToken')
   router.push('/signin')
 }
 
+// Function to check for an existing user token in localStorage and update the authStore
 const checkUser = () => {
   const token = JSON.parse(localStorage.getItem('userToken'))
   if (token) {
+    // Update the authStore with the user token and refresh token
     authStore.userInfo.token = token.token
     authStore.userInfo.refreshToken = token.refreshToken
   }
